@@ -1,0 +1,25 @@
+@font-face {font-family: "icon";
+  src: url('iconfont.eot?t=1577944672252'); /* IE9 */
+  src: url('iconfont.eot?t=1577944672252#iefix') format('embedded-opentype'), /* IE6-IE8 */
+  url('data:application/x-font-woff2;charset=utf-8;base64,d09GMgABAAAAAAO0AAsAAAAAB4QAAANlAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHEIGVgCDBgqDHIJ4ATYCJAMMCwgABCAFhD0HNxuPBsiO1FaxTZK8yOf9Tf+GpBbmwsyfuYXW2WnZE1X5Uh6+ne/XvwgiTjjpriSf6EBoMp/nmnpJ+AH8olbVvjeaahdHC08Yd9iuW9Kg6Fc+DgTAJchFRp1GrWDG4HEEQK7d2h3migMbaCfMCGPH0gR5YWAu46SLAKao35MfJcIMSAwVeGqzXbsXqn2lXnvo0P9D0Um4MGw7HwBnFUABuQAGZHYG2qFZIRfFIwMbrjdiCGmr9P//KDHWGckfHiAhQBpwqx8AyERFCV6XYmJh9IB81kdRAGAEMMAIADuALWFLd5K6X35Gv4jbt9vcvNkqjEfeudM2sqIjKnbrVuuhTV042ML7D/DAwy1u3x6grt8/fm9mr7VLw2etKy1Ly27Vls+cIGT+AlmeMC8Kc6sfvJNC5T0bIucsb8SluRtT+ezZEWTF8Tr85NEkDJ3J+erNhPLxE8icyEjrhglZohKGmiJX/XmwjhJOcNmWpoqW4KnbXo4uWb1GzZyGY5rRkbv3jaCIQ146slmVa1prVO/eatvL4KmWxB0nVTpvAVWZY/GoboRwIsocVG1cFFXi1MgZITdK30geMeNKM2fWheDyZQ1Vm9RsVGxhqTvcGT0i2smfJiTXOd6wZcdXDWXLB1/MdDbTR/aRPyxt8HWj/MWwpNqIalsMX/0uhtRZ+juuz0hCEHI2jZyRVCJ4xAx0AwD/h9LfPyD37/8QRl2GnFV3re/TNbDSL7PMAAD3S67pptRpzYCZBJOlX2RLDBB/1VjBTpqhHoNiGqJaL8xLAB6H8R84EuLxckv4aygRTHgBiUk0KEYhGZsKA1kmjJiS4HKUXS0L1QNF0gIgW5EBwmwJJAHWgDLbRTL2EAwinIKR2QNwbbzYUpYe5XlNr+iui15Kj36KvafmUald57q+hbAWubp7XYFl2wivzw5xpXh+sXK5rvAI75IZvt7WErquKqpXcyt1Zp8mXC5NKfRqDtFTz7fpemGFggK16075PTU3uJq8hO50Qi+KHvpR2PWk8VBFRMcbk1sQrIq4dOftUJSvDQE6nytAp6K4fMUGyLoGz2DXo2b79GZVgk6nUqhxq8ZNUedwn+AiBY2isHuQg9CTLp9tQa5QBQWonzrVkH+syf2gBKcHvCcNiVDCwB6tlzD6bFpRPwEAAAAA') format('woff2'),
+  url('iconfont.woff?t=1577944672252') format('woff'),
+  url('iconfont.ttf?t=1577944672252') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+ */
+  url('iconfont.svg?t=1577944672252#icon') format('svg'); /* iOS 4.1- */
+}
+
+.icon {
+  font-family: "icon" !important;
+  font-size: 16px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-wode:before {
+  content: "\e66e";
+}
+
+.icon-shouye:before {
+  content: "\e634";
+}
+
