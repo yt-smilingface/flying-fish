@@ -13,11 +13,63 @@
 			<image class="quotaArrow" :src="quotaArrow" alt="quotaArrow"></image>
 		</view>
 		
-		<!-- 优惠套餐限时购买 -->
-		<view class="title">
-			<image class="sellImg" :src="sellImg" alt="sellImg"></image>
-			优惠套餐限时购买
+		<!-- 认证之后显示内容 -->
+		<view class="loan" v-for="(loan, loanIndex) in loans" :key="loanIndex">
+			<view class="head">
+				<text class="headtitle">{{loan.title}}</text>
+				<image class="fast" :src="loanFast"></image>
+				<text class="nameNum">{{loan.nameNum}}人今日已申请</text>
+			</view>
+			<view class="container">
+				<view class="left">
+					<view class="moneyNum">{{loan.moneyNum}}</view>
+					<view class="tips">最高额度（元）</view>
+				</view>
+				<view class="content">
+					<view class="contenttitle">一分钟申请，十分钟到账</view>
+					<view class="tips">利息0.03%，期限3-24个月</view>
+				</view>
+				<view class="right">
+					<button class="btnApply" type="primary" size="mini" @click="applyClick(loan)">申请</button>
+				</view>
+			</view>
 		</view>
+		
+		<!-- 会员专区 -->
+		<view class="title" style="border-bottom: none;">会员专区</view>
+		<view class="member">
+			<view class="memberBanner" @click="memberClick">
+				<text style="color: #1D2C4C">升级会员，</text>
+				<text style="color: #F5A623">加速审批，通过率提高</text>
+				<text style="color: #FA652B">50%</text>
+			</view>
+			<view class="memberItem">
+				<view class="container">
+					<view class="left">
+						<view class="moneyNum">{{member.moneyNum}}</view>
+						<view class="tips">目前可用额度</view>
+					</view>
+					<view class="right">
+						<view class="term">
+							想用多久 <text class="text">{{member.term}}</text>
+							<view class="arrow" @click="termClick(member)">
+								修改<image class="arrowLink" :src="memberArrow"></image>
+							</view>
+						</view>
+						<view class="term">
+							想怎么用 <text class="text">{{member.purpose}}</text>
+							<view class="arrow" @click="purposeClick(member)">
+								选择<image class="arrowLink" :src="memberArrow"></image>
+							</view>
+						</view>
+					</view>
+				</view>
+				<view class="btnCash" @click="cashClick(member)">立即提现</view>
+			</view>
+		</view>
+		
+		<!-- 优惠套餐限时购买 -->
+		<view class="title"><image class="sellImg" :src="sellImg" alt="sellImg"></image>优惠套餐限时购买</view>
 		<view class="QS-tabs-box">
 			<QSTabs 
 			ref="tabs" 
@@ -32,7 +84,7 @@
 		</view>
 		<swiper 
 		class="tabsSwiper"
-		:style="{'height': '600rpx'}" 
+		:style="{'height': tabsSwiperHeight + 'px'}" 
 		:current="swiperCurrent" 
 		@transition="transition"
 		@animationfinish="animationfinish">
@@ -58,15 +110,11 @@
 		
 
 		
-		
-		
 	</view>
 </template>
 
 <script>
 	import QSTabs from '@/utils/QS-tabs.vue';
-	
-	const Sys = uni.getSystemInfoSync();
 	
 	export default {
 		name: 'index',
@@ -80,7 +128,28 @@
 				quotaArrow: require("@/static/image/arrow_right.svg"),
 				sellImg: require("@/static/image/sell.svg"),
 				
-			
+				loanFast: require("@/static/image/loan.svg"),
+				loans: [
+					{
+						title: '去哪借',
+						nameNum: '243',
+						moneyNum: 200000
+					},
+					{
+						title: '秒借',
+						nameNum: '43',
+						moneyNum: 300000
+					}
+				],
+				
+				memberArrow: require("@/static/image/arrow_right_line.svg"),
+				member: {
+					moneyNum: 1000,
+					term: '12期',
+					purpose: '请选择用途'
+				},
+				
+				tabsSwiperHeight: '',
 				tabs:["网站会员","餐饮美食","生活服务","健康体验"],
 				current: 0,
 				swiperCurrent: 0,
@@ -110,10 +179,17 @@
 			
 			}
 		},
+		mounted() {
+			this.tabsSwiperHeight = this.iteItem.length*110
+			console.log(this.tabsSwiperHeight)
+		},
 		methods: {
 			// 获取额度点击事件
 			getQuotaClick() {
-				
+				uni.showToast({
+				    title: '获取额度',
+				    duration: 2000
+				});
 			},
 			
 			change(index) {
@@ -129,9 +205,55 @@
 				this.current = current;
 				console.log('nbbnbnb')
 			},
+			
+			// 优惠套餐点击事件
 			iteClick(item) {
-				
+				uni.showToast({
+				    title: item.name,
+				    duration: 2000
+				});
+			},
+			
+			// 点击申请
+			applyClick(loan) {
+				uni.showToast({
+				    title: '申请',
+				    duration: 2000
+				});
+			},
+			
+			// 点击升级会员
+			memberClick() {
+				uni.showToast({
+				    title: '升级会员',
+				    duration: 2000
+				});
+			},
+			
+			// 想用多久 选择 
+			termClick(member){
+				uni.showToast({
+				    title: '想用多久',
+				    duration: 2000
+				});
+			},
+			
+			// 想怎么用
+			purposeClick(member) {
+				uni.showToast({
+				    title: '想怎么用',
+				    duration: 2000
+				});
+			},
+			
+			// 点击立即提现
+			cashClick(member) {
+				uni.showToast({
+				    title: '立即提现',
+				    duration: 2000
+				});
 			}
+			
 			
 		}
 	}
@@ -198,6 +320,7 @@
 				background-color: #F7F8F9;
 			}
 			.tips {
+				line-height: 12px;
 				font-size: 12px;
 				color: #7C89A4;
 			}
@@ -230,6 +353,133 @@
 				vertical-align: -2px;
 			}
 		}
+		.loan {
+			margin-top: 8px;
+			background-color: #fff;
+			padding: 10px;
+			.head {
+				height: 40px;
+				line-height: 40px;
+				border-bottom: 1px solid #E4E8F0;
+				.headtitle {
+					margin-right: 8px;
+					display: inline-block;
+					vertical-align: top;
+					font-size: 15px;
+					font-weight: bolder;
+					color: #1D2C4C;
+				}
+				.fast {
+					display: inline-block;
+					vertical-align: top;
+					width: 60px;
+					height: 40px;
+				}
+				.nameNum {
+					height: 40px;
+					line-height: 40px;
+					float: right;
+					font-size: 12px;
+					color: #7C89A4;
+				}
+			}
+			.container {
+				margin-top: 10px;
+				display: flex;
+				.left {
+					flex: 1;
+					.moneyNum {
+						line-height: 26px;
+						font-size: 18px;
+						font-weight: bolder;
+						color: #F5A623;
+					}
+				}
+				.content {
+					flex: 2;
+					.contenttitle {
+						line-height: 26px;
+						font-size: 12px;
+						color: #1D2C4C;
+					}
+				}
+				.right {
+					flex: 1;
+					text-align: right;
+					.btnApply {
+						margin-top: 10px;
+						background-image: linear-gradient(to right, #FA652B, #FF7E0A);
+						border-radius: 15px;
+					}
+				}
+				.tips {
+					line-height: 20px;
+					font-size: 12px;
+					color: #9B9B9B;
+				}
+			}
+		}
+		
+		.member {
+			padding: 0 10px;
+			background-color: #fff;
+			.memberBanner {
+				background-color: #FFF1E3;
+				padding: 10px 0;
+				text-align: center;
+				font-size: 12px;
+			}
+			.container {
+				margin: 10px 0;
+				display: flex;
+				.left {
+					flex: 1;
+					.moneyNum {
+						line-height: 26px;
+						font-size: 18px;
+						font-weight: bolder;
+						color: #F5A623;
+					}
+					.tips {
+						line-height: 20px;
+						font-size: 12px;
+						color: #9B9B9B;
+					}
+				}
+				.right {
+					flex: 3;
+					.term {
+						height: 24px;
+						line-height: 24px;
+						font-size: 12px;
+						color: #9B9B9B;
+					}
+					.text {
+						margin-left: 6px;
+						color: #1D2C4C;
+					}
+					.arrow {
+						float: right;
+					}
+					.arrowLink {
+						display: inline-block;
+						width: 12px;
+						height: 10px;
+					}
+				}
+			}
+			.btnCash {
+				height: 40px;
+				line-height: 40px;
+				text-align: center;
+				border-top: 1px solid #E4E8F0;
+				font-size: 14px;
+				font-weight: bolder;
+				color: #FA652B;
+			}
+			
+		}
+		
 		
 		
 	}

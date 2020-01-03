@@ -1,11 +1,197 @@
 <template>
-	<view>
-		wodeneirong
+	<view class="userContainer">
+		<view class="userHeader">
+			<image class="headImg" :src="head.img"></image>
+			<view class="time">{{head.time}}</view>
+			<view class="user">
+				{{head.user}} 
+				<image class="headState" :src="head.statey"></image>
+				<image class="headState" :src="head.staten"></image>
+			</view>
+		</view>
+		
+		<!-- 领取额度 -->
+		<view class="getQuota" @click="getQuotaClick">
+			<image class="quotaImg" :src="quotaImg" alt="quotaImg"></image>
+			<view class="quotaText">
+				<view style="color:#1D2C4C">领取额度</view>
+				<view style="color:#7C89A4">查看您的分期额度</view>
+			</view>
+			<image class="quotaArrow" :src="quotaArrow" alt="quotaArrow"></image>
+		</view>
+		
+		<view class="list">
+			<uni-list>
+			    <uni-list-item title="我的订单" :thumb="list.orderThumb" @click="listClick(0)"></uni-list-item>
+			    <uni-list-item title="精彩推荐" :thumb="list.orderRecommend" @click="listClick(1)"></uni-list-item>
+			    <uni-list-item title="浏览记录" :thumb="list.orderBrowse" @click="listClick(2)"></uni-list-item>
+			    <uni-list-item title="关于我们" :thumb="list.orderAbout" @click="listClick(3)"></uni-list-item>
+			</uni-list>
+		</view>
+		
+		<view class="warning">{{warning}}</view>
+		
 	</view>
 </template>
 
 <script>
+	import uniList from '@/utils/uni-list/uni-list/uni-list.vue'
+	import uniListItem from '@/utils/uni-list/uni-list-item/uni-list-item.vue'
+	export default {
+		name: 'user-index',
+		components: {
+			uniList,
+			uniListItem
+		},
+		data() {
+			return {
+				head: {
+					img: require("@/static/image/robot.svg"),
+					time: '下午好',
+					user: 'ssdd_sd156k',
+					statey: require("@/static/image/auth_reading.svg"),
+					staten: require("@/static/image/auth_yes.svg"),
+				},
+				
+				quotaImg: require("@/static/image/wallet.svg"),
+				quotaArrow: require("@/static/image/arrow_right.svg"),
+				
+				list: {
+					orderThumb: require("@/static/image/order.svg"),
+					orderRecommend: require("@/static/image/recommend.svg"),
+					orderBrowse: require("@/static/image/browse.svg"),
+					orderAbout: require("@/static/image/about.svg"),
+				},
+				
+				warning: '根据国家法律规定，禁止向未成年人以及大学生提供贷款服务。'
+				
+			}
+		},
+		methods: {
+			// 获取额度点击事件
+			getQuotaClick() {
+				uni.showToast({
+						title: '获取额度',
+						duration: 2000
+				});
+			},
+			
+			listClick(val) {
+				switch (val) {
+					case 0:
+						uni.showToast({title: '我的订单',duration: 1000})
+					break
+					case 1:
+						uni.showToast({title: '精彩推荐',duration: 1000})
+					break
+					case 2:
+						uni.showToast({title: '浏览记录',duration: 1000})
+					break
+					case 3:
+						uni.showToast({title: '关于我们',duration: 1000})
+					break
+					default:
+				}
+			}
+			
+			
+			
+		}
+		
+	}
+	
 </script>
 
-<style>
+<style lang="scss">
+	.userContainer {
+		position: relative;
+		&::before {
+			content: '';
+			display: block;
+			width: 100%;
+			height: 80px;
+			background-image: linear-gradient(to bottom, #FE9F1A, #FEC655);
+		}
+		.userHeader {
+			position: relative;
+			margin-top: -60px;
+			margin: -40px 10px 0 10px;
+			padding: 10px 10px 10px 80px;
+			border-radius: 5px;
+			background-color: #fff;
+			.headImg {
+				position: absolute;
+				top: 10px;
+				left: 10px;
+				width: 60px;
+				height: 60px;
+				border-radius: 5px;
+				background-color: #f0f0f0;
+			}
+			.time {
+				margin-top: 10px;
+				font-size: 14px;
+				color: #7C89A4;
+			}
+			.user {
+				line-height: 30px;
+				font-size: 18px;
+				font-weight: bolder;
+				color: #1D2C4C;
+			}
+			.headState {
+				vertical-align: -2px;
+				width: 60px;
+				height: 20px;
+			}
+		}
+		
+		.getQuota {
+			margin-top: 8px;
+			padding: 5px 10px;
+			background-color: #fff;
+			&:active {
+				background-color: #fafafa;
+			}
+			.quotaImg {
+				display: inline-block;
+				width: 50px;
+				height: 50px;
+				vertical-align: middle;
+				margin-right: 14px;
+			}
+			.quotaText {
+				display: inline-block;
+				vertical-align: middle;
+				font-size: 12px;
+			}
+			.quotaArrow {
+				display: inline-block;
+				width: 20px;
+				height: 50px;
+				line-height: 50px;
+				vertical-align: middle;
+				float: right;
+			}
+		}
+		
+		.list {
+			margin-top: 8px;
+			.uni-list-item {
+				padding: 0 10px;
+			}
+			.uni-list-item__icon {
+				margin-top: 5px;
+			}
+		}
+		
+		.warning {
+			margin: 10px;
+			font-size: 12px;
+			color: #9B9B9B;
+		}
+		
+		
+		
+	}
 </style>
