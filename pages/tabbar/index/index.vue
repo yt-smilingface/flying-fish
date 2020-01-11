@@ -23,7 +23,7 @@
 			<view class="container">
 				<view class="left">
 					<view class="moneyNum">{{loan.moneyNum}}</view>
-					<view class="tips">最高额度（元）</view>
+					<view class="tips">最高额度(元)</view>
 				</view>
 				<view class="content">
 					<view class="contenttitle">一分钟申请，十分钟到账</view>
@@ -84,7 +84,7 @@
 		</view>
 		<swiper 
 		class="tabsSwiper"
-		:style="{'height': tabsSwiperHeight + 'px'}" 
+		:style="{'height': '300px'}" 
 		:current="swiperCurrent" 
 		@transition="transition"
 		@animationfinish="animationfinish">
@@ -114,7 +114,7 @@
 </template>
 
 <script>
-	import QSTabs from '@/utils/QS-tabs.vue';
+	import QSTabs from '@/components/QS-tabs/QS-tabs.vue';
 	
 	export default {
 		name: 'index',
@@ -180,8 +180,7 @@
 			}
 		},
 		mounted() {
-			this.tabsSwiperHeight = this.iteItem.length*110
-			console.log(this.tabsSwiperHeight)
+			
 		},
 		methods: {
 			// 获取额度点击事件
@@ -268,7 +267,7 @@
 		}
 		.getQuota {
 			margin-top: 8px;
-			padding: 5px 10px;
+			padding: 5px 15px;
 			background-color: #fff;
 			&:active {
 				background-color: #fafafa;
@@ -301,7 +300,7 @@
 		.tabsSwiper {
 			.scroll-item {
 				margin-top:6px;
-				padding: 10px;
+				padding: 10px 15px;
 				background-color: #fff;
 				&:active {
 					background-color: #fafafa;
@@ -337,9 +336,10 @@
 				color: #FA652B ;
 			}
 		}
+		
 		.title {
 			margin-top: 8px;
-			padding: 0 10px;
+			padding: 0 15px;
 			height: 36px;
 			line-height: 36px;
 			background-color: #fff;
@@ -353,10 +353,11 @@
 				vertical-align: -2px;
 			}
 		}
+		
 		.loan {
 			margin-top: 8px;
 			background-color: #fff;
-			padding: 10px;
+			padding: 10px 15px;
 			.head {
 				height: 40px;
 				line-height: 40px;
@@ -421,7 +422,7 @@
 		}
 		
 		.member {
-			padding: 0 10px;
+			padding: 0 15px;
 			background-color: #fff;
 			.memberBanner {
 				background-color: #FFF1E3;

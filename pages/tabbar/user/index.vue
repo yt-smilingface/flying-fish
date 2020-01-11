@@ -2,8 +2,8 @@
 	<view class="userContainer">
 		<view class="userHeader">
 			<image class="headImg" :src="head.img"></image>
-			<view class="time">{{head.time}}</view>
-			<view class="user">
+			<view class="time" >{{head.time}}</view>
+			<view class="user" @click="userLogin">
 				{{head.user}} 
 				<image class="headState" :src="head.statey"></image>
 				<image class="headState" :src="head.staten"></image>
@@ -35,8 +35,8 @@
 </template>
 
 <script>
-	import uniList from '@/utils/uni-list/uni-list/uni-list.vue'
-	import uniListItem from '@/utils/uni-list/uni-list-item/uni-list-item.vue'
+	import uniList from '@/components/uni-list/uni-list/uni-list.vue'
+	import uniListItem from '@/components/uni-list/uni-list-item/uni-list-item.vue'
 	export default {
 		name: 'user-index',
 		components: {
@@ -48,7 +48,7 @@
 				head: {
 					img: require("@/static/image/robot.svg"),
 					time: '下午好',
-					user: 'ssdd_sd156k',
+					user: '登录',
 					statey: require("@/static/image/auth_reading.svg"),
 					staten: require("@/static/image/auth_yes.svg"),
 				},
@@ -70,9 +70,15 @@
 		methods: {
 			// 获取额度点击事件
 			getQuotaClick() {
-				uni.showToast({
-						title: '获取额度',
-						duration: 2000
+				uni.navigateTo({
+					url: '../../authentication/index'
+				})
+			},
+			
+			// 点击登录
+			userLogin() {
+				uni.navigateTo({
+				    url: '../../login/login'
 				});
 			},
 			
@@ -115,7 +121,7 @@
 		.userHeader {
 			position: relative;
 			margin-top: -60px;
-			margin: -40px 10px 0 10px;
+			margin: -40px 15px 0 15px;
 			padding: 10px 10px 10px 80px;
 			border-radius: 5px;
 			background-color: #fff;
@@ -148,7 +154,7 @@
 		
 		.getQuota {
 			margin-top: 8px;
-			padding: 5px 10px;
+			padding: 5px 15px;
 			background-color: #fff;
 			&:active {
 				background-color: #fafafa;
@@ -178,7 +184,7 @@
 		.list {
 			margin-top: 8px;
 			.uni-list-item {
-				padding: 0 10px;
+				padding: 0 15px;
 			}
 			.uni-list-item__icon {
 				margin-top: 5px;
