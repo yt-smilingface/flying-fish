@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="48px" height="48px" viewBox="0 0 48 48" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 51.2 (57519) - http://www.bohemiancoding.com/sketch -->
+    <title>icon_basic</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <linearGradient x1="50%" y1="0%" x2="50%" y2="98.1033237%" id="linearGradient-1">
+            <stop stop-color="#FF861E" offset="0%"></stop>
+            <stop stop-color="#FFBE71" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="定稿" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="申请贷款" transform="translate(-40.000000, -415.000000)" fill-rule="nonzero">
+            <g id="认证列表" transform="translate(30.000000, 391.000000)">
+                <g id="icon_basic" transform="translate(10.000000, 24.000000)">
+                    <rect id="Rectangle-13" fill="url(#linearGradient-1)" x="0" y="0" width="48" height="48" rx="8"></rect>
+                    <g id="文件" transform="translate(10.000000, 10.000000)">
+                        <rect id="Rectangle-path" fill="#000000" opacity="0" x="0" y="0" width="28" height="28"></rect>
+                        <path d="M23.275,0.875 L5.425,0.875 C4.375,0.875 3.675,1.575 3.675,2.625 L3.675,25.725 C3.675,26.6 4.55,27.475 5.425,27.475 L16.625,27.475 C17.675,27.475 18.375,26.775 18.375,25.725 L18.375,22.05 C18.375,21.175 19.25,20.3 20.125,20.3 L23.1,20.3 C24.15,20.3 24.85,19.6 24.85,18.55 L24.85,2.45 C25.2,1.575 24.325,0.875 23.275,0.875 Z M17.5,15.225 C17.5,15.75 17.15,16.1 16.625,16.1 L8.75,16.1 C8.225,16.1 7.875,15.75 7.875,15.225 L7.875,15.05 C7.875,14.525 8.225,14.175 8.75,14.175 L16.625,14.175 C17.15,14.175 17.5,14.525 17.5,15.225 Z M21.35,10.5 C21.35,11.025 21,11.375 20.475,11.375 L8.75,11.375 C8.225,11.2 7.7,10.85 7.7,10.5 L7.7,10.325 C7.7,9.8 8.05,9.45 8.575,9.45 L20.3,9.45 C21,9.45 21.35,9.8 21.35,10.5 Z M21.35,5.775 C21.35,6.3 21,6.65 20.475,6.65 L8.75,6.65 C8.225,6.65 7.875,6.3 7.875,5.775 L7.875,5.6 C7.875,5.075 8.225,4.725 8.75,4.725 L20.475,4.725 C21,4.725 21.35,5.075 21.35,5.775 Z M19.6,23.275 L19.6,25.725 C19.6,26.6 20.65,26.95 21.175,26.425 L24.675,22.925 C25.2,22.4 24.85,21.35 23.975,21.35 L21.525,21.35 C20.475,21.35 19.6,22.225 19.6,23.275 Z" id="Shape" fill="#FFFFFF"></path>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
