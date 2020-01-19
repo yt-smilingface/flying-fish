@@ -1,5 +1,5 @@
 <template>
-	<view class="authenticationIdcard">
+	<view class="authenticationOperator">
 		<view class="list">
 			<catLabel 
 				text="手机号" 
@@ -90,7 +90,7 @@
 </script>
 
 <style lang="scss">
-	.authenticationInfo {
+	.authenticationOperator {
 		position: relative;
 		.list {
 			padding-top: 10px;

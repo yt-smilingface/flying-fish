@@ -138,7 +138,7 @@
 			padding-top: 10px;
 		}
 		.list .cat-label:last-child .container {
-			border: none;
+			border: none;	
 		}
 		.btnSubmit {
 			margin: 20px 11px;

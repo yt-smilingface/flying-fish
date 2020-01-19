@@ -43,6 +43,11 @@
 				<text style="color: #F5A623">加速审批，通过率提高</text>
 				<text style="color: #FA652B">50%</text>
 			</view>
+			<view class="memberBannerTop" v-if="isMemberTop">
+				<view class="toptitle">{{memberTop.title}}</view>
+				<view class="time">有效期至 {{memberTop.time}}</view>
+				<view class="tution" @click="tutionClick">续费</view>
+			</view>
 			<view class="memberItem">
 				<view class="container">
 					<view class="left">
@@ -175,7 +180,13 @@
 						name: '爱奇艺季度VIP会员',
 						time: '20.00元/1个月'
 					},
-				]
+				],
+				
+				isMemberTop: false,
+				memberTop: {
+					title: '高级会员',
+					time: '2010-10-1',
+				}
 			
 			}
 		},
@@ -223,10 +234,9 @@
 			
 			// 点击升级会员
 			memberClick() {
-				uni.showToast({
-				    title: '升级会员',
-				    duration: 2000
-				});
+				uni.navigateTo({	
+					url: '../../member/join'
+				})
 			},
 			
 			// 想用多久 选择 
@@ -247,8 +257,15 @@
 			
 			// 点击立即提现
 			cashClick(member) {
+				uni.navigateTo({
+					url: '../../authentication/apply'
+				})
+			},
+			
+			// 续费
+			tutionClick() {
 				uni.showToast({
-				    title: '立即提现',
+				    title: '续费',
 				    duration: 2000
 				});
 			}
@@ -324,7 +341,7 @@
 				color: #7C89A4;
 			}
 			.name {
-				margin-bottom: 10px;
+				margin-bottom: 2px;
 				overflow: hidden;
 				text-overflow: ellipsis;
 				white-space: nowrap;
@@ -429,6 +446,34 @@
 				padding: 10px 0;
 				text-align: center;
 				font-size: 12px;
+			}
+			.memberBannerTop {
+				position: relative;
+				background-color: #FFF1E3;
+				padding: 10px;
+				.toptitle {
+					font-size: 14px;
+					font-weight: bolder;
+					color: #FF7E0A;	
+				}
+				.time {
+					margin-top: 10px;
+					font-size: 12px;
+					color: #9A7C5F;
+				}
+				.tution {
+					position: absolute;
+					top: 18px;
+					right: 10px;
+					display: inline-block;
+					padding: 0 20px;
+					height: 30px;
+					line-height: 30px;
+					background-color: #fff;
+					border-radius: 15px;
+					font-size: 12px;
+					color: #FF7E0A;
+				}
 			}
 			.container {
 				margin: 10px 0;

@@ -63,9 +63,81 @@
 			}
 		},
 		{
+			"path": "pages/authentication/internet-agreement",
+			"style": {
+				"navigationBarTitleText": "网银解析协议"
+			}
+		},
+		{
 			"path": "pages/authentication/idCard",
 			"style": {
 				"navigationBarTitleText": "身份证验证"
+			}
+		},
+		{
+			"path": "pages/authentication/apply",
+			"style": {
+				"navigationBarTitleText": "申请贷款"
+			}
+		},
+		{
+			"path": "pages/authentication/savings",
+			"style": {
+				"navigationBarTitleText": "绑定储蓄卡"
+			}
+		},
+		{
+			"path": "pages/authentication/credit",
+			"style": {
+				"navigationBarTitleText": "信用卡账单认证"
+			}
+		},
+		{
+			"path": "pages/authentication/bank",
+			"style": {
+				"navigationBarTitleText": "选择银行"
+			}
+		},
+		{
+			"path": "pages/authentication/bank-credit",
+			"style": {
+				"navigationBarTitleText": "选择银行"
+			}
+		},
+		{
+			"path": "pages/member/join",
+			"style": {
+				"navigationBarTitleText": "加入会员"
+			}
+		},
+		{
+			"path": "pages/user/order",
+			"style": {
+				"navigationBarTitleText": "我的订单"
+			}
+		},
+		{
+			"path": "pages/user/orderInfo",
+			"style": {
+				"navigationBarTitleText": "订单明细"
+			}
+		},
+		{
+			"path": "pages/user/browse",
+			"style": {
+				"navigationBarTitleText": "浏览记录"
+			}
+		},
+		{
+			"path": "pages/user/reommend",
+			"style": {
+				"navigationBarTitleText": "精彩推荐"
+			}
+		},
+		{
+			"path": "pages/user/about",
+			"style": {
+				"navigationBarTitleText": "关于"
 			}
 		}
 	],

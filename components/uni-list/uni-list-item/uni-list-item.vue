@@ -156,7 +156,7 @@
 	}
 
 	.uni-list-item--hover {
-		background-color: $uni-bg-color-hover;
+		// background-color: $uni-bg-color-hover;
 	}
 
 	.uni-list-item__container {

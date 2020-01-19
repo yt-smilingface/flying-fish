@@ -24,6 +24,8 @@
 			</uni-list>
 		</view>
 		
+		<button class="btnSubmit" @click="submitClick">确定</button>
+		
 	</view>
 </template>
 
@@ -85,6 +87,11 @@
 					break
 					default:
 				}
+			},
+			
+			// 确定提交
+			submitClick() {
+				uni.showToast({title: '提交成功 ',duration: 1000,icon:'none'});
 			}
 			
 			
@@ -131,6 +138,17 @@
 			}
 			.uni-list-item__icon {
 				margin-top: 5px;
+			}
+		}
+		
+		.btnSubmit {
+			margin: 20px 11px;
+			height: 44px;
+			line-height: 44px;
+			background-image: linear-gradient(to right, #4778F5, #56A7EF);
+			color: #fff;
+			&:active {
+				opacity: 0.8;
 			}
 		}
 		

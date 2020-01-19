@@ -85,16 +85,24 @@
 			listClick(val) {
 				switch (val) {
 					case 0:
-						uni.showToast({title: '我的订单',duration: 1000})
+					uni.navigateTo({
+						url: '../../user/order'
+					})
 					break
 					case 1:
-						uni.showToast({title: '精彩推荐',duration: 1000})
+					uni.navigateTo({
+						url: '../../user/reommend'
+					})
 					break
 					case 2:
-						uni.showToast({title: '浏览记录',duration: 1000})
+						uni.navigateTo({
+							url: '../../user/browse'
+						})
 					break
 					case 3:
-						uni.showToast({title: '关于我们',duration: 1000})
+						uni.navigateTo({
+							url: '../../user/about'
+						})
 					break
 					default:
 				}

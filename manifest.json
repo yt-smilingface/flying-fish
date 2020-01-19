@@ -94,7 +94,7 @@
             },
             "splashscreen" : {
                 "android" : {
-                    "hdpi" : "E:/project/feiyu/file/飞鱼定稿1222切图标柱/飞鱼定稿1222切图标柱/assets/banner@3x.png"
+                    "hdpi" : "static/icon_logo.png"
                 }
             }
         }
