@@ -114,16 +114,10 @@
 					uni.navigateTo({
 						url: './savings'
 					})
-					uni.showToast({
-						title: '绑定储蓄卡'
-					})
 					break
 					case 4:
 					uni.navigateTo({
 						url: './credit'
-					})
-					uni.showToast({
-						title: '信用卡账单认证'
 					})
 					break
 					default:

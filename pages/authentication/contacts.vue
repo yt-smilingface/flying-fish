@@ -15,7 +15,7 @@
 		<button class="btnSubmit" @click="submitClick">提交</button>
 		
 	</view>
-</template>q
+</template>
 
 <script>
 	import catLabel from "@/components/cat-label/cat-label.vue"

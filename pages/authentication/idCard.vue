@@ -161,7 +161,16 @@
 					uni.showToast({title: '请上传身份证反面照',duration: 1000,icon:'none'});
 					return
 				}
-				uni.showToast({title: '上传成功',duration: 1000})
+				
+				let query = {}
+				query.files = []
+				query.files.push(this.justImage)
+				query.files.push(this.backImage)
+				console.log(query)
+				this.$api.idCard({files:query}).then(res => {
+					console.log('res',res)
+					uni.showToast({title: '上传成功',duration: 1000})
+				})
 				
 			}
 		}

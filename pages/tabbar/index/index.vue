@@ -14,7 +14,7 @@
 		</view>
 		
 		<!-- 认证之后显示内容 -->
-		<view class="loan" v-for="(loan, loanIndex) in loans" :key="loanIndex">
+		<!-- <view class="loan" v-for="(loan, loanIndex) in loans" :key="loanIndex">
 			<view class="head">
 				<text class="headtitle">{{loan.title}}</text>
 				<image class="fast" :src="loanFast"></image>
@@ -33,17 +33,17 @@
 					<button class="btnApply" type="primary" size="mini" @click="applyClick(loan)">申请</button>
 				</view>
 			</view>
-		</view>
+		</view> -->
 		
 		<!-- 会员专区 -->
 		<view class="title" style="border-bottom: none;">会员专区</view>
 		<view class="member">
 			<view class="memberBanner" @click="memberClick">
 				<text style="color: #1D2C4C">升级会员，</text>
-				<text style="color: #F5A623">加速审批，通过率提高</text>
-				<text style="color: #FA652B">50%</text>
+				<text style="color: #F5A623">多项权益、生活服务全覆盖</text>
+				<!-- <text style="color: #FA652B">50%</text> -->
 			</view>
-			<view class="memberBannerTop" v-if="isMemberTop">
+<!-- 			<view class="memberBannerTop" v-if="isMemberTop">
 				<view class="toptitle">{{memberTop.title}}</view>
 				<view class="time">有效期至 {{memberTop.time}}</view>
 				<view class="tution" @click="tutionClick">续费</view>
@@ -70,12 +70,13 @@
 					</view>
 				</view>
 				<view class="btnCash" @click="cashClick(member)">立即提现</view>
-			</view>
+			</view> -->
+				<view class="btnCash" @click="joinclick" style="boder:none">立即参与</view>
 		</view>
 		
 		<!-- 优惠套餐限时购买 -->
 		<view class="title"><image class="sellImg" :src="sellImg" alt="sellImg"></image>优惠套餐限时购买</view>
-		<view class="QS-tabs-box">
+<!-- 		<view class="QS-tabs-box">
 			<QSTabs 
 			ref="tabs" 
 			:tabs="tabs" 
@@ -86,8 +87,9 @@
 			lineColor="#f1505c"
 			swiperWidth="750">
 			</QSTabs>
-		</view>
-		<swiper 
+		</view> -->
+		
+		<!-- <swiper 
 		class="tabsSwiper"
 		:style="{'height': '300px'}" 
 		:current="swiperCurrent" 
@@ -109,9 +111,21 @@
 						</view>
 				</scroll-view>
 			</swiper-item>
-			
-			
-		</swiper>
+		</swiper> -->
+		<view class="tabsSwiper">
+			<view class="scroll-item"
+				v-for="(ite, ind) in iteItem" :key="ind"
+				@click="iteClick(ite)"
+				>
+				<view class="scroll-item-text-box">
+					<image class="tabsImage" :src="ite.profitBanner" mode=""></image>
+					<view class="tips">商品名称</view>
+					<view class="name" style="margin-bottom: 12px;">{{ite.profitName}}</view>
+					<view class="tips">价格/优惠 <text class="time">{{ite.profitPrice}}</text>元</view>
+					
+				</view>
+			</view>
+		</view>
 		
 
 		
@@ -154,33 +168,13 @@
 					purpose: '请选择用途'
 				},
 				
-				tabsSwiperHeight: '',
-				tabs:["网站会员","餐饮美食","生活服务","健康体验"],
-				current: 0,
-				swiperCurrent: 0,
-				dx: 0,
-				iteItem: [
-					{
-						image: require("@/static/image/banner_index.png"),
-						name: '爱奇艺季度VIP会员',
-						time: '20.00元/1个月'
-					},
-					{
-						image: require("@/static/image/banner_index.png"),
-						name: '爱奇艺季度VIP会员',
-						time: '20.00元/1个月'
-					},
-					{
-						image: require("@/static/image/banner_index.png"),
-						name: '爱奇艺季度VIP会员',
-						time: '20.00元/1个月'
-					},
-					{
-						image: require("@/static/image/banner_index.png"),
-						name: '爱奇艺季度VIP会员',
-						time: '20.00元/1个月'
-					},
-				],
+				// tabsSwiperHeight: '',
+				// tabs:["网站会员","餐饮美食","生活服务","健康体验"],
+				// current: 0,
+				// swiperCurrent: 0,
+				// dx: 0,
+				
+				iteItem: [], //套餐列表
 				
 				isMemberTop: false,
 				memberTop: {
@@ -191,15 +185,30 @@
 			}
 		},
 		mounted() {
-			
+			this.getDiscountPackages()
 		},
 		methods: {
+			// 获取套餐
+			getDiscountPackages() {
+				uni.request({
+					// url: url + '/api/Recommend',
+					url: this.$urlConfig + '/api/Recommend',
+					method: 'GET',
+					data: '',
+					header: this.$headers,
+					success: (res) => {
+						console.log('套餐列表',res)
+					}
+				})
+				
+				
+			},
+			
 			// 获取额度点击事件
 			getQuotaClick() {
-				uni.showToast({
-				    title: '获取额度',
-				    duration: 2000
-				});
+				uni.navigateTo({
+					url: '../../authentication/index'
+				})
 			},
 			
 			change(index) {
@@ -218,10 +227,9 @@
 			
 			// 优惠套餐点击事件
 			iteClick(item) {
-				uni.showToast({
-				    title: item.name,
-				    duration: 2000
-				});
+				uni.navigateTo({
+					url: '../../member/join'
+				})
 			},
 			
 			// 点击申请
@@ -259,6 +267,13 @@
 			cashClick(member) {
 				uni.navigateTo({
 					url: '../../authentication/apply'
+				})
+			},
+			
+			// 立即参加
+			joinclick() {
+				uni.navigateTo({
+					url: '../../member/join'
 				})
 			},
 			
@@ -315,6 +330,9 @@
 			background-color: #fff;
 		}
 		.tabsSwiper {
+			padding: 10px 0;
+			max-height: 300px;
+			overflow: auto;
 			.scroll-item {
 				margin-top:6px;
 				padding: 10px 15px;
@@ -331,8 +349,8 @@
 				position: absolute;
 				top: 0;
 				left: 0;
-				width: 80px;
-				height: 80px;
+				width: 60px;
+				height: 60px;
 				background-color: #F7F8F9;
 			}
 			.tips {
@@ -349,6 +367,7 @@
 				color: #1D2C4C;
 			}
 			.time {
+				margin-left: 6px;
 				font-size: 16px;
 				color: #FA652B ;
 			}

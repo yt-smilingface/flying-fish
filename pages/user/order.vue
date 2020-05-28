@@ -1,6 +1,6 @@
 <template>
 	<view class="userOrder">
-		<view class="tabs">
+		<!-- <view class="tabs">
 			<view class="title" 
 				v-for="(tabs, tabsIndex) in tabsItem" 
 				:key="tabsIndex"
@@ -24,7 +24,7 @@
 				</view>
 				<view class="container">
 					<view class="left">
-						<view class="sumPre">
+						<view class="sumPre"> 
 							<text class="nowPre">{{order.nowPre}}</text>
 							/{{order.sumPre}}期
 						</view>
@@ -50,8 +50,36 @@
 				<view class="number">贷款金额(元): {{detail.number}}</view>
 				<view class="types">
 					<text class="time">还款时间: {{detail.time}}</text>
-					<text class="state">{{detail.state}} <image class="images" :src="detailArrow"></image></text>
+					<view class="state">{{detail.state}} <image class="images" :src="detailArrow"></image></view>
 				</view>
+			</view>
+		</view> -->
+		
+		<view class="memberItem">
+			<view class="header">
+				<text class="objective">普通会员</text>
+				<text class="state">已支付</text>
+			</view>
+			<view class="container">
+				<view class="order">
+					<view class="orderitem">卡号：11099092974</view>
+					<view class="orderitem">密码：123456</view>
+					<view class="vip">VIP</view>
+				</view>
+				<view class="number">订单金额：99元</view>
+				<view class="time">有效时间：2020-02-12 12:20:38 至 
+				2020-05-12 16:24:38</view>
+			</view>
+		</view>
+		
+		<view class="memberItem">
+			<view class="header">
+				<text class="objective">高级会员</text>
+				<text class="state" style="color: #aaa;">未支付</text>
+			</view>
+			<view class="container">
+				<view class="number">订单金额：199元</view>
+				<view class="btnOrder" @click="orderClick">去支付 ></view>
 			</view>
 		</view>
 		
@@ -118,7 +146,15 @@
 				uni.navigateTo({
 					url: './orderInfo'
 				})
-			}
+			},
+			
+			// 去支付
+			orderClick() {
+				uni.navigateTo({
+					url: '../member/join'
+				})
+				
+			},
 			
 		}
 		
@@ -254,6 +290,58 @@
 			}
 		}
 		
+		.memberItem {
+			margin: 10px 15px;
+			background-color: #fff;
+			.header {
+				padding: 0 15px;
+				height: 40px;
+				line-height: 40px;
+				font-size: 12px;	
+				border-bottom: 1px solid #E4E8F0;
+				.state {
+					float: right;
+				}
+			}
+			.container {
+				position: relative;
+				padding: 10px;
+				.order {
+					padding: 10px;
+					background-color: #FFF1E3;
+					line-height: 24px;
+					font-size: 14px;
+					color: #ca8216;
+				}
+				.vip {
+					position: absolute;
+					top: 30px;
+					right: 20px;
+					height: 30px;
+					line-height: 30px;
+					width: 50px;
+					text-align: center;
+					background-color: #FC7B59;
+					border-radius: 3px;
+					font-weight: bolder;
+					color: #ddd;
+				}
+				.number {
+					line-height: 30px;
+					font-size: 14px;
+					font-weight: bolder;
+					color: #555;
+				}
+				.time {
+					font-size: 11px;
+					color: #bbb;
+				}
+				.btnOrder {
+					font-size: 14px;
+					color: #F5A623;
+				}
+			}
 		
+		}
 	}
 </style>

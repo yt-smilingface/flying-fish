@@ -2,14 +2,17 @@
 	<view class="registerContainer">
 		<view class="register">已有账号？立即 <text @click="loginClick" class="text">登录</text></view>
 		<form @submit="formSubmit">
-			<input class="uni-input" name="name" placeholder="输入账号" />	
-			<input class="uni-input" name="password" password placeholder="输入密码" />	
-			<input class="uni-input" name="tel" placeholder="输入手机号码" />	
-			<input class="uni-input code" name="code" placeholder="输入短信验证码" />	
-			<button class="btnCode" @click="codeClick">
+			<input class="uni-input" name="userName" placeholder="输入用户名" />		
+			<input class="uni-input" name="name" placeholder="请输入名称" />	
+			<!-- <input class="uni-input" name="email" placeholder="输入邮箱" />	 -->
+			<input class="uni-input" name="phone" placeholder="请输入手机号" />	
+			<input class="uni-input" name="password" password placeholder="输入密码" />
+			<input class="uni-input" name="confirmPassword" password placeholder="再次输入密码" />
+			<!-- <input class="uni-input code" name="code" placeholder="输入短信验证码" />	 -->
+<!-- 			<button class="btnCode" @click="codeClick">
 				获取验证码
 				<text class="countDown">{{countDown}}</text>
-			</button>
+			</button> -->
 			<button class="btnSubmit" form-type="submit">注册</button>
 		</form>
 		<view class="error">{{error}}</view>
@@ -17,6 +20,7 @@
 </template>
 	
 <script>
+	import urlConfig from '../../common/config.js'
 	export default {
 		name: 'login',
 		data() {
@@ -51,31 +55,81 @@
 			formSubmit(e) {
 				let formdata = e.detail.value;
 				console.log(formdata)
-				if(formdata.name == '') {
+				if(formdata.userName == '') {
 					this.error = "用户名不能为空"
+					return 
+				}
+				if(formdata.email == '') {
+					this.error = "邮箱不能为空"
+					return 
+				}
+				if(formdata.name == '') {
+					this.error = "名称不能为空"
+					return 
+				}
+				if(formdata.phone == '') {
+					this.error = "手机号码不能为空"
+					return 
+				}
+				let phoneReg = /^[1][3,4,5,7,8][0-9]{9}$/;
+				if(!phoneReg.test(formdata.phone)) {
+					this.error = "请输入有效的手机号码"
 					return 
 				}
 				if(formdata.password == '') {
 					this.error = "密码不能为空"
 					return 
 				}
-				if(formdata.tel == '') {
-					this.error = "手机号码不能为空"
+				// let reg = /^(?=.*[a-zA-Z])\w{6,}$/;
+				let reg = /^\w{6,}$/;
+				if(!reg.test(formdata.password)) {
+						this.error = "密码必须至少是6字符且至少有一个小写字母"
+						return 
+				}
+				if(formdata.password != formdata.confirmPassword) {
+					this.error = "两次输入的面必须一致"
 					return 
 				}
-				if(formdata.code == '') {
-					this.error = "验证码不能为空"
-					return 
-				}
-				if(formdata.tel == '') {
-					this.error = "手机号码不能为空"
-					return 
-				}
+				console.log(formdata.password.length)
 				this.error = "";
+				let query= {
+					LoginName: formdata.userName, //用户名
+					// email: formdata.email,  //邮箱 
+					Phone: formdata.phone, //手机号
+					Name: formdata.name, //手机号
+					LoginPwd: formdata.password,  //密码
+					ConfirmPwd: formdata.confirmPassword,  //确认密码
+ 					// nickName: '', //昵称3-20
+					// verifyCode: '', 验证码
+				}
+				console.log(query)
 				
-				uni.navigateTo({
-					url: './login'
+				uni.request({
+					url: urlConfig + '/api/Account/Register',
+					method: 'POST',
+					data: query,
+					success: (res) => {
+						console.log(res)
+						console.log(res)
+							if(res.statusCode == 200) {
+								uni.showToast({title: '注册成功',duration: 2000});
+								uni.navigateTo({
+									url: './login'
+								})
+							}
+					}
 				})
+				// this.$api.register(query).then(data => {
+				// 	console.log(data)
+				// 	if(data[1].statusCode == 200) {
+				// 		uni.showToast({title: '注册成功',duration: 2000});
+				// 		uni.navigateTo({
+				// 			url: './login'
+				// 		})
+				// 	}
+				// }).catch(error => {
+					
+				// })
 				
 			}
 		}

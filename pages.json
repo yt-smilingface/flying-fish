@@ -45,12 +45,6 @@
 			}
 		},
 		{
-			"path": "pages/authentication/contacts",
-			"style": {
-				"navigationBarTitleText": "基本信息"
-			}
-		},
-		{
 			"path": "pages/authentication/operator",
 			"style": {
 				"navigationBarTitleText": "运营商认证"
@@ -95,19 +89,43 @@
 		{
 			"path": "pages/authentication/bank",
 			"style": {
-				"navigationBarTitleText": "选择银行"
+				"navigationBarTitleText": "选择银行卡"
 			}
 		},
 		{
 			"path": "pages/authentication/bank-credit",
 			"style": {
-				"navigationBarTitleText": "选择银行"
+				"navigationBarTitleText": "选择银行卡"
 			}
 		},
 		{
 			"path": "pages/member/join",
 			"style": {
 				"navigationBarTitleText": "加入会员"
+			}
+		},
+		{
+			"path": "pages/member/select-member",
+			"style": {
+				"navigationBarTitleText": "选择支付方式"
+			}
+		},
+		{
+			"path": "pages/member/bank-credit",
+			"style": {
+				"navigationBarTitleText": "添加支付方式"
+			}
+		},
+		{
+			"path": "pages/member/bank-edit",
+			"style": {
+				"navigationBarTitleText": "添加支付方式"
+			}
+		},
+		{
+			"path": "pages/member/agreement",
+			"style": {
+				"navigationBarTitleText": "飞鱼会员用户使用协议"
 			}
 		},
 		{
@@ -177,7 +195,8 @@
 		"list": [
 			{
 				"name": "首页", //模式名称
-				"path": "pages/tabbar/index/index", //启动页面，必选
+				// "path": "pages/tabbar/index/index", //启动页面，必选
+				"path":"pages/login/login",
 				"query": "222" //启动参数，在页面的onLoad函数里面得到
 			}
 		]

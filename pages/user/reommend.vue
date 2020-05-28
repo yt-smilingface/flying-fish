@@ -143,12 +143,12 @@
 			},
 			
 			// 下一步
-			submitClick() {
-				console.log(this.form)
-				uni.navigateTo({
-					url: './contacts'
-				})
-			}
+			// submitClick() {
+			// 	console.log(this.form)
+			// 	uni.navigateTo({
+			// 		url: './contacts'
+			// 	})
+			// }
 			
 		}
 		

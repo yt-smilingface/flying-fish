@@ -1,10 +1,10 @@
 <template>
 	<view class="memberJoin">
 	
-		<uni-list class="list">
+		<!-- <uni-list class="list">
 			<uni-list-item 
 				class="listItem"
-				:title="name.title" 	
+				:title="name.tqitle" 	
 				:show-arrow="false"
 			>
 				<view class="note">{{name.note}}</view>
@@ -19,7 +19,7 @@
 			>
 				<view class="note">{{time.note}}</view>
 			</uni-list-item>
-		</uni-list>	
+		</uni-list>	 -->
 		
 		<view class="item">
 			<view class="title">会员套餐</view>
@@ -38,7 +38,7 @@
 			</view>
 		</view>		
 		
-		<view class="item">
+<!-- 		<view class="item">
 			<view class="title">支付方式</view>
 			<view class="container">
 				<uni-list class="list memberCheck">
@@ -61,11 +61,12 @@
 					</uni-list-item>
 				</uni-list>	
 			</view>
-		</view>
+		</view> -->
+		<view class="agreement" @click="agreement"> 《飞鱼会员用户使用协议》</view>
 		
 		<view class="submit">
 			<view class="money">实付金额： {{money}}</view>
-			<button class="button" type="primary" @click="submit">立即支付</button>
+			<button class="button" type="primary" @click="submit">选择支付方式</button>
 		</view>
 		
 		
@@ -99,24 +100,24 @@
 					{
 						title: '初级会员',
 						images: require("@/static/image/vip.svg"),
-						num: '49.00'
+						num: '99.00'
 					},
 					{
 						title: '中级会员',
 						images: require("@/static/image/vip.svg"),
-						num: '99.00'
+						num: '199.00'
 					},
 					{
 						title: '高级会员',
 						images: require("@/static/image/vip.svg"),
-						num: '199.00'
+						num: '299.00'
 					}
 				],
 				zhifubaoThumb: require("@/static/image/zhifubao.svg"),
 				wechatThumb: require("@/static/image/wechat.svg"),
 				zhifubaoChecked: true,
 				wechatChecked: false,
-				money: '49.00'
+				money: '99.00'
 				
 			}
 		},
@@ -139,16 +140,28 @@
 				}
 			},
 			
+			// 用户协议
+			agreement() {
+				uni.navigateTo({
+					url: './agreement'
+				})
+			},
+				
+			
 			// 立即支付
 			submit() {
-				// 支付宝支付
-				if(this.zhifubaoChecked) {
-					uni.showToast({title: '支付宝支付',duration: 1000})
-				}
-				// 微信支付
-				if(this.wechatChecked) {
-					uni.showToast({title: '微信支付',duration: 1000})
-				}
+				// // 支付宝支付
+				// if(this.zhifubaoChecked) {
+				// 	uni.showToast({title: '支付宝支付',duration: 1000})
+				// }
+				// // 微信支付
+				// if(this.wechatChecked) {
+				// 	uni.showToast({title: '微信支付',duration: 1000})
+				// }
+				
+				uni.navigateTo({
+					url: './select-member?money=' +this.money
+				})
 				
 			}
 				
@@ -235,6 +248,13 @@
 				right: 0;
 				transform:scale(0.7);
 			}
+		}
+		
+		.agreement {
+			margin-left: 15px;
+			font-size: 12px;
+			margin-top: 10px;
+			color: #F5A623;
 		}
 		
 		.submit {

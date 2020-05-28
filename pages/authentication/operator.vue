@@ -5,12 +5,12 @@
 				text="手机号" 
 				inputType="number" 
 				dataType="text" 
-				v-model="operator.tel" 
+				v-model="operator.phoneNo" 
 			/>
 			<catLabel 
 				text="运营商" 
 				dataType="selector"
-				v-model="operator.operator"
+				v-model="operator.ispName"
 				:initIndex="operatorIndex" 
 				:selectList="operatorList"  
 				@handSelect="handoperator" 
@@ -19,7 +19,7 @@
 				text="服务密码" 
 				inputType="number" 
 				dataType="text" 
-				v-model="operator.password" 
+				v-model="operator.pwd" 
 			/>
 		</view>
 		<view class="tips">
@@ -28,7 +28,10 @@
 		</view>
 		
 		<view class="agreement">
-			<checkbox class="check" value="cb" :checked="isCheckbox" />同意
+			<checkbox-group class="check" @change="checkboxChange">
+				<checkbox value="cb" :checked="isCheckbox" />
+				<text class="checkText">同意</text>
+			</checkbox-group>
 			<text class="agreementText" @click="agreementClick">《运营商数据采集协议》</text>
 		</view>
 		
@@ -47,9 +50,9 @@
 		data() {
 			return {
 				operator: {
-					tel: '',
-					operator: '',
-					password: ''	
+					phoneNo: '',
+					ispName: '广东电信',
+					pwd: ''	
 				},
 				operatorIndex: 0,
 				operatorList: [
@@ -66,7 +69,9 @@
 			
 			// 运营商选择
 			handoperator(val) {
+					console.log(val)
 					this.operatorIndex = val.checkArr.index;
+					this.operator.ispName = val.result
 			},
 			
 			// 协议
@@ -74,12 +79,56 @@
 				uni.navigateTo({url: './agreement'})
 			},
 			
+			// 勾选协议
+			checkboxChange(val) {
+				this.isCheckbox = !this.isCheckbox
+			},
+			
 			// 提交
 			submitClick() {
-				uni.showToast({title: '提交成功',duration: 1000})
-				uni.navigateTo({
-					url: './index'
+				if(this.operator.phoneNo == '') {
+					uni.showToast({title: '请输入手机号',duration: 1000});
+					return 
+				}
+				let phoneReg = /^[1][3,4,5,7,8][0-9]{9}$/;
+				if(!phoneReg.test(this.operator.phoneNo)) {
+					this.error = "请输入有效的手机号码"
+					return 
+				}
+				if(this.operator.ispName == '') {
+					uni.showToast({title: '请选择运营商',duration: 1000});
+					return 
+				}
+				if(this.operator.pwd == '') {
+					uni.showToast({title: '请输入服务密码',duration: 1000});
+					return 
+				}
+				
+				if(!this.isCheckbox) {
+					uni.showToast({title: '请选勾选协议',duration: 1000});
+					return 
+				}
+				
+				uni.request({
+					url: this.$urlConfig + '/api/MobileIsp',
+					method: 'POST',
+					data: this.operator,
+					header: this.$headers,
+					success: (res) => {
+						console.log('运营商认证',res)
+						if(res.statusCode == 200) {
+							uni.showToast({title: '认证成功',duration: 1000})
+							// uni.navigateTo({
+							// 	url: './index'
+							// })
+						} else {
+							uni.showToast({title: '认证失败',duration: 1000});
+						}
+					}
 				})
+				
+				
+				
 				
 			}
 			
@@ -108,8 +157,13 @@
 			font-size: 14px;
 			color: #7C89A4;
 			.check {
-				vertical-align: 3px;
+				display: inline-block;
+				vertical-align: 1px;
 				transform:scale(0.8);
+				font-size: 16px;
+				.checkText {
+					vertical-align: -3px;
+				}
 			}
 			.agreementText {
 				color: #4778F5;

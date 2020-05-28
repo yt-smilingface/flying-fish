@@ -46,8 +46,8 @@
 		data() {
 			return {
 				head: {
-					img: require("@/static/image/robot.svg"),
-					time: '下午好',
+					img: require("@/static/image/icon_head.svg"),
+					time: '',
 					user: '登录',
 					statey: require("@/static/image/auth_reading.svg"),
 					staten: require("@/static/image/auth_yes.svg"),
@@ -67,7 +67,42 @@
 				
 			}
 		},
+		onLoad() {
+			
+		},
+		mounted() {
+			this.getUserInfo()
+			this.getTime()
+		},
 		methods: {
+			// 获取个人信息
+			getUserInfo() {
+				let userInfo = uni.getStorage({
+					key: 'userInfo',
+					success: (res) => {
+						this.head.user = res.data.info.name
+					},
+					fail: (fail) => {
+						this.head.user = '登录'
+					}
+				})
+			},
+			
+			// 获取时间段
+			getTime() {
+				let date = new Date()
+				let hour = date.getHours()
+				if(hour < 12) {
+					this.head.time = '早上好'
+				} else if(hour > 12 && hour < 13) {
+					this.head.time = '中午好'
+				} else if(hour > 13 && hour < 18) {
+					this.head.time = '下午好'
+				} else {
+					this.head.time = '晚上好'
+				}
+			},
+			
 			// 获取额度点击事件
 			getQuotaClick() {
 				uni.navigateTo({
@@ -77,12 +112,17 @@
 			
 			// 点击登录
 			userLogin() {
+				let isLogin = false
 				uni.navigateTo({
-				    url: '../../login/login'
+				    url: '../../login/login?isLogin=' + isLogin
 				});
 			},
 			
 			listClick(val) {
+				let checkLogin = this.checkLogin();
+				if(!checkLogin) {
+					return
+				};
 				switch (val) {
 					case 0:
 					uni.navigateTo({
